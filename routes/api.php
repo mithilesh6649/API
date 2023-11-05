@@ -22,4 +22,12 @@ use App\Http\Controllers\Api\AuthController;
 Route::controller(AuthController::class)->group(function() {
      Route::post('/register', '_register');
      Route::post('/verifyOtp', 'verifyOtp');
+     Route::post('/resendOtp', 'resendOtp');
+     Route::post('/login', 'login');
+    
+
+     Route::middleware('auth:sanctum')->group(function() {
+        Route::post('/logout', 'logout');
+     });
+
 });

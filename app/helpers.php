@@ -3,6 +3,7 @@
     use App\Models\User; 
     use App\Models\Permission; 
     use App\Models\RolePermission; 
+    use Illuminate\Support\Str;
     const RECORD_PER_PAGE = 10; 
     const MANAGE_USERS = 1; 
     const MANAGE_CUSTOMERS = 2; 
@@ -68,4 +69,41 @@
     	 if (! function_exists('frontendDateTimeFormat')) { function frontendDateTimeFormat($date = '', $format = 'Y-m-d H:i A', $timeZone = '') { if($date){ $timeZone = ($timeZone) ? ($timeZone) : (env('APP_TIMEZONE')); if($timeZone){ return Carbon::parse($date)->timeZone($timeZone)->format($format); } return Carbon::parse($date)->format($format); } return $date; } } 
 
 
-    	 if (! function_exists('isValidDate')) { function isValidDate($date = "null") { try { \Carbon\Carbon::parse($date); return true; } catch (\Exception $e) { return false; } } }
+    	 if (! function_exists('isValidDate'))
+            { 
+                function isValidDate($date = "null"){ 
+                    try { 
+                        \Carbon\Carbon::parse($date); return true; 
+                    } 
+                    catch (\Exception $e) 
+                    {
+                     return false; 
+                    }
+                    } 
+        }
+
+
+
+ 
+  
+
+   if (! function_exists('generateOTP')) 
+    { 
+
+        function generateOTP()
+         { 
+           return rand(1000, 9999);   
+         } 
+    }
+
+
+   if (! function_exists('generateRandomString')) 
+    { 
+
+      function generateRandomString(int $charLength = null)
+          {
+             return Str::random(($charLength) ? $charLength : 40);
+          }
+    }
+
+ 

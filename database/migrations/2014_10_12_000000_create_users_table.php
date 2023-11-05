@@ -30,8 +30,9 @@ return new class extends Migration
             $table->timestamp('last_login_at')->nullable();
             $table->boolean('push_notification')->default(0)->comment('0|disable  1|enable')->nullable();
             $table->boolean('email_notification')->default(0)->comment('0|disable  1|enable')->nullable();
-            $table->string('device_token')->nullable();
+            $table->string('fcm_token')->nullable();
             $table->string('device_type')->nullable();
+             $table->tinyInteger('status')->default(1)->comment('1|Active  0|Inactive')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

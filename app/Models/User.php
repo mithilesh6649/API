@@ -25,6 +25,17 @@ class User extends Authenticatable
         'phone_number',
         'country_code',
         'gender',
+        'status',
+        'fcm_token',
+        'device_type',
+        'latitude',
+        'longitude',
+        'phone_verified',
+        'phone_verified_at',
+        'email_verified',
+        'email_verified_at',
+        'push_notification',
+        'email_notification',
     ];
 
     /**
@@ -45,4 +56,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+     public function setPasswordAttribute($password)
+    {
+        if ( $password !== null & $password !== "" )
+        {
+            $this->attributes['password'] = bcrypt($password);
+        }
+    }
 }
